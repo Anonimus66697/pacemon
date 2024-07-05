@@ -1,6 +1,11 @@
 from random import randint
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime
+import random
+import requests
+import time
+from telebot import TeleBot, types
+from config import token
 
 class Pokemon:
     pokemons = {}
@@ -58,9 +63,9 @@ class Pokemon:
         else:
             return f"Сражение @{self.pokemon_trainer} с @{enemy.pokemon_trainer}"  
         
-    def feed(self, feed_interval = 20, hp_increase = 10 ):
+    def feed(self, feed_interval = 60, hp_increase = 10 ):
         current_time = datetime.now()  
-        delta_time = timedelta(seconds=feed_interval)  
+        delta_time = delta_time(second=feed_interval)  
         if (current_time - self.last_feed_time) > delta_time:
             self.hp += hp_increase
             self.last_feed_time = current_time
@@ -79,6 +84,5 @@ class Fighter(Pokemon):
         self.power -= superpower
         return res + f"\nБоец применил супер-атаку силой:{superpower} "
     
-def feed(self):
-    return super().feed(feed_interval=10)
+
     
